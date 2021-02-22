@@ -5,15 +5,14 @@ const Hero = () => {
   const Title = () => (
     <>
       <h2 className="title">
-        Bienvenido al seguimiento digital de  &lt;
-        <span className="text-blue">AASSA</span>.<span className="text-green">io</span>
-        &gt;
+        Bienvenidos al panel de seguimiento digital de 
+        <span className="text-blue">  AASSA</span>
       </h2>
     </>
   );
 
   return (
-    <div className="jumbotron text-center" style={{marginTop: '-40px'}}>
+    <div className="jumbotron text-center">
       <Title/>
     </div>
   );

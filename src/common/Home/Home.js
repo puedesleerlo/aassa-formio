@@ -9,7 +9,7 @@ const Home = () => {
     if (authState.user && authState.user.data) {
       return (
         <h3>
-          You are logged in as&nbsp;<strong>{ authState.user.data.email }</strong>!
+          Estás registrado como &nbsp;<strong>{ authState.user.data.email }</strong>!
         </h3>
       );
     }
