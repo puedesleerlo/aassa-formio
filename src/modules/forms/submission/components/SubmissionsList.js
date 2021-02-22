@@ -4,8 +4,9 @@ import { SubmissionGrid, Errors } from 'react-formio';
 import { Loading } from '../../../../common';
 import { useForm } from '../../form';
 import { useSubmissions, indexSubmissions } from '../submissionsContext';
-
+import { useAuth } from '../../../auth';
 const SubmissionsList = (props) => {
+  const {state: authState} = useAuth()
   const {
     FormError,
     formName,
@@ -61,12 +62,40 @@ const SubmissionsList = (props) => {
       <Loading />
     );
   }
-
+  
   const MainContent = () =>  (
     <div className='form-index'>
       <Errors errors={[formState.error, submissionsState.error]} />
       <SubmissionGrid
         submissions={{ ...submissionsState, ...requestParams }}
+        operations={[{
+          action: 'view',
+          buttonType: 'warning',
+          icon: 'list-alt',
+          permissionsResolver: function permissionsResolver() {
+            return authState.is.administrator || authState.is.supervisor || authState.is.operario;
+          },
+      
+          title: 'View'
+        }, {
+          action: 'edit',
+          buttonType: 'secondary',
+          icon: 'edit',
+          permissionsResolver: function permissionsResolver() {
+            return authState.is.administrator || authState.is.supervisor;
+          },
+      
+          title: 'Editar'
+        }, {
+          action: 'delete',
+          buttonType: 'danger',
+          icon: 'trash',
+          permissionsResolver: function permissionsResolver() {
+            return authState.is.administrator || authState.is.supervisor;
+          },
+      
+          title: 'Eliminar'
+        }]}
         form={formState.form}
         onAction={onAction}
         getSubmissions={getSubmissions}
@@ -75,7 +104,7 @@ const SubmissionsList = (props) => {
       <div className="d-flex justify-content-end mt-2">
         <Link className='btn btn-primary' to={createSubmissionPath || `/form/${formId || formState.id}`}>
           <i className='glyphicon glyphicon-plus fa fa-plus' aria-hidden='true'></i>
-          &nbsp;New {formState.form?.title}
+          &nbsp;Nuevo {formState.form?.title}
         </Link>
       </div>
     </div>

@@ -5,16 +5,16 @@ import { useAuth } from '../../modules/auth';
 
 const Header = () => {
   const { state: authState, dispatch } = useAuth();
-
+  console.log(authState)
   const onLogout = () => {
     logout()(dispatch);
   };
 
   return (
-     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+     <nav className="navbar navbar-expand-lg">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            <img className="logo" alt="Form.io" src="https://portal.form.io/images/formio-logo.png" height="25px" />
+            <img className="logo" alt="AASSA" src="https://www.aassa.com.co/wp-content/themes/plantilla1/images/logo.png" height="25px" />
           </Link>
           <ul className="nav navbar-nav mr-auto">
             <NavLink exact to="/" role="navigation button" className="nav-link">
@@ -27,9 +27,9 @@ const Header = () => {
               </NavLink>
             ) : null }
             { authState.authenticated ? (
-              <NavLink to="/event" role="navigation link" className="nav-link">
+              <NavLink to="/controldiario" role="navigation link" className="nav-link">
                 <i className="fa fa-calendar"></i>&nbsp;
-                Events
+                Control diario de calidad del agua
               </NavLink>
             ) : null }
           </ul>

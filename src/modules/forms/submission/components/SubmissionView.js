@@ -31,7 +31,7 @@ const SubmissionView = ({ hideComponents, readOnly, formName }) => {
 
   return (
     <div>
-      <h3>View { formState.form?.title } Submission</h3>
+      <h3>Ver { formState.form?.title } Registrado</h3>
       <Errors errors={[formState.error, submissionState.error]} />
       <Form
         form={formState.form}

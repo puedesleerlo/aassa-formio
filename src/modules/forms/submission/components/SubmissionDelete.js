@@ -29,7 +29,7 @@ const SubmissionDelete = ({ formName }) => {
     }
   };
 
-  const message = `Are you sure you wish to delete the submission '${submissionId || eventId}'?`;
+  const message = `Estás seguro que deseas eliminar el registro '${submissionId || eventId}'?`;
 
   return (
     <div>

@@ -6,12 +6,11 @@ import { SubmissionProvider, SubmissionsList, SubmissionsProvider } from '../../
 import EventFormError from './EventFormError';
 import EventPage from './EventPage';
 
-const EventsPage = (props) => {
-  const {formName} = props
+const EventsPage = () => {
   const { dispatch: dispatchFormEvent } = useForm();
 
   useEffect(() => {
-    getForm(dispatchFormEvent, null, formName);
+    getForm(dispatchFormEvent, null, 'event');
   }, [dispatchFormEvent]);
 
   return (
@@ -20,33 +19,33 @@ const EventsPage = (props) => {
         <Switch>
           <Route
             exact
-            path={`/${formName}`}
+            path="/event"
             render={(props) => (
               <SubmissionsList
                 {...props}
                 FormError={EventFormError}
-                formName={formName}
-                getViewPath={(formId, submission) => `/${formName}/${submission._id}`}
-                getEditPath={(formId, submission) => `/${formName}/${submission._id}/edit`}
-                getDeletePath={(formId, submission) => `/${formName}/${submission._id}/delete`}
-                createSubmissionPath={`/${formName}/create`}
+                formName="event"
+                getViewPath={(formId, submission) => `/event/${submission._id}`}
+                getEditPath={(formId, submission) => `/event/${submission._id}/edit`}
+                getDeletePath={(formId, submission) => `/event/${submission._id}/delete`}
+                createSubmissionPath={`/event/create`}
               />
             )}
           />
           <Route
             exact
-            path={`/${formName}/create`}
+            path="/event/create"
             render={(props) => (
               <SubmissionProvider>
-                <FormView {...props} name={formName}/>
+                <FormView {...props} name='event'/>
               </SubmissionProvider>
             )}
           />
           <Route
-            path={`/${formName}/:eventId`}
+            path="/event/:eventId"
             render={(props) => (
               <SubmissionProvider>
-                <EventPage formName={formName} {...props}/>
+                <EventPage {...props}/>
               </SubmissionProvider>
             )}
           />

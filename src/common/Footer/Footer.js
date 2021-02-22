@@ -8,8 +8,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="container text-center mt-auto" style={styles}>
-        Built with ♥ by&nbsp;
-        <a href="https://form.io">Form.io</a>
+        Hecho por Telemetrik
       </div>
     </footer>
   );

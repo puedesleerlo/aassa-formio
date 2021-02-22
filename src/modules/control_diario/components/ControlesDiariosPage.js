@@ -4,14 +4,13 @@ import { FormView, getForm, useForm } from '../../forms/form';
 import { FormsProvider } from '../../forms/form/formsContext';
 import { SubmissionProvider, SubmissionsList, SubmissionsProvider } from '../../forms/submission';
 import EventFormError from './EventFormError';
-import EventPage from './EventPage';
+import ControlDiarioPage from './ControlDiarioPage';
 
-const EventsPage = (props) => {
-  const {formName} = props
+const ControlesDiariosPage = () => {
   const { dispatch: dispatchFormEvent } = useForm();
 
   useEffect(() => {
-    getForm(dispatchFormEvent, null, formName);
+    getForm(dispatchFormEvent, null, 'controldiario');
   }, [dispatchFormEvent]);
 
   return (
@@ -20,33 +19,33 @@ const EventsPage = (props) => {
         <Switch>
           <Route
             exact
-            path={`/${formName}`}
+            path="/controldiario"
             render={(props) => (
               <SubmissionsList
                 {...props}
                 FormError={EventFormError}
-                formName={formName}
-                getViewPath={(formId, submission) => `/${formName}/${submission._id}`}
-                getEditPath={(formId, submission) => `/${formName}/${submission._id}/edit`}
-                getDeletePath={(formId, submission) => `/${formName}/${submission._id}/delete`}
-                createSubmissionPath={`/${formName}/create`}
+                formName="controldiario"
+                getViewPath={(formId, submission) => `/controldiario/${submission._id}`}
+                getEditPath={(formId, submission) => `/controldiario/${submission._id}/edit`}
+                getDeletePath={(formId, submission) => `/controldiario/${submission._id}/delete`}
+                createSubmissionPath={`/controldiario/create`}
               />
             )}
           />
           <Route
             exact
-            path={`/${formName}/create`}
+            path="/controldiario/create"
             render={(props) => (
               <SubmissionProvider>
-                <FormView {...props} name={formName}/>
+                <FormView {...props} name='controldiario'/>
               </SubmissionProvider>
             )}
           />
           <Route
-            path={`/${formName}/:eventId`}
+            path="/controldiario/:controldiarioId"
             render={(props) => (
               <SubmissionProvider>
-                <EventPage formName={formName} {...props}/>
+                <ControlDiarioPage {...props}/>
               </SubmissionProvider>
             )}
           />
@@ -56,4 +55,4 @@ const EventsPage = (props) => {
   );
 };
 
-export default EventsPage;
+export default ControlesDiariosPage;

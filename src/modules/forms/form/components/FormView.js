@@ -47,7 +47,7 @@ const FormView = (props) => {
 
   return (
     <div>
-      <h3>New { form.title }</h3>
+      <h3>Nuevo { form.title }</h3>
       <Errors errors={[formError]} />
       <Form
         form={form}

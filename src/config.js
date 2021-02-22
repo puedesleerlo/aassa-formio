@@ -9,8 +9,8 @@ const getQuery = (query) => {
 }
 
 const query = getQuery({});
-const PROJECT_URL = query.projectUrl || 'https://reactstarter.form.io';
-const API_URL = query.apiUrl || 'https://api.form.io';
+const PROJECT_URL = "https://vclqgdqdtspdbgs.form.io";
+const API_URL = 'https://vclqgdqdtspdbgs.form.io';
 
 export const AppConfig = {
   projectUrl: PROJECT_URL,
@@ -21,7 +21,7 @@ export const AuthConfig = {
   anonState: '/auth',
   authState: '/',
   login: {
-    form: 'admin/login'
+    form: 'user/login'
   },
   register: {
     form: 'user/register'
